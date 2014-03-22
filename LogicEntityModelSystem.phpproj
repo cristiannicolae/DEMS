@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Name>LogicEntityModelSystem</Name>
+    <ProjectGuid>{6bd3f20d-9277-4116-88e6-c3848cff5a5c}</ProjectGuid>
+    <RootNamespace>LogicEntityModelSystem</RootNamespace>
+    <OutputType>Library</OutputType>
+    <ProjectTypeGuids>{A0786B88-2ADB-4C21-ABE8-AA2D79766269}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <IncludeDebugInformation>true</IncludeDebugInformation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <IncludeDebugInformation>false</IncludeDebugInformation>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="CacheQueue.class.php" />
+    <Compile Include="GenericList.class.php" />
+    <Compile Include="languagetranslationtable.interface.php" />
+    <Compile Include="languagetypes.class.php" />
+    <Compile Include="model.class.php" />
+    <Compile Include="modellist.class.php" />
+    <Compile Include="mysql.synth.php" />
+    <Compile Include="parameterized.interface.php" />
+    <Compile Include="storagetranslationtable.interface.php" />
+    <Compile Include="synth.interface.php" />
+    <Compile Include="tests\GenericListTest.php" />
+    <Compile Include="tests\ModelClassTest.php" />
+    <Compile Include="tests\test.php" />
+    <Compile Include="doc\Architecture.bmp" />
+    <Compile Include="doc\generics.txt" />
+    <Compile Include="doc\Model System.odt" />
+    <Compile Include="doc\ModelTypes.txt" />
+    <Compile Include="doc\model_project_notes.txt" />
+    <Compile Include="doc\TypeSystemOverview.bmp" />
+    <Compile Include="models\category.model" />
+    <Compile Include="models\fieldproperty.model" />
+    <Compile Include="models\fieldtype.model" />
+    <Compile Include="models\form.model" />
+    <Compile Include="models\form.model_old" />
+    <Compile Include="models\formsubmission.model" />
+    <Compile Include="storemodels\category.model" />
+    <Compile Include="storemodels\manufacturer.model" />
+    <Compile Include="storemodels\product.model" />
+    <Compile Include="tests\testmodels\autoload.php" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="doc" />
+    <Folder Include="models" />
+    <Folder Include="tests\" />
+    <Folder Include="storemodels" />
+    <Folder Include="tests\testmodels\" />
+  </ItemGroup>
+</Project>

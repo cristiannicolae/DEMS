@@ -1,0 +1,17 @@
+The Types that are currently supported by the model:
+
+short text - text that is at most 255 characters
+text - any text, no limit here
+short integer - a small number, no larger than 65,536
+integer - 32 bit int, should suffice for most crap
+long integer - 64 bit int, insane in the membrane type values
+single float - small floating point number, i guess single precision as the IEEE likes to call it
+double float - double precision float
+short data - small binary value (eg: suitable for images/sound etc.)
+data - arbitrary length binary data (eg: suitable for video)
+bool - true/false, you already were expectin this
+time - represents a time of the day
+date - represents a date
+time interval - difference in seconds between two date/times
+
+// TODO fixed point

@@ -1,0 +1,7 @@
+Model Product:
+	short text Name
+	short text otherName
+	short integer ID
+	Manufacturer Manufacturer
+	list of Category Categories
+	short text SKU

@@ -1,0 +1,52 @@
+Ok so there was some advancing with this project last year. Now I would like to have an alpha version ready that has all the main features implemented.
+
+Method of work:
+
+Model contains a list/registry of all the Models that are available for use, each of them being a singleton object of type Model stored in the static Model object (hope that makes sense, kinda hart to keep up with it myself).
+
+The Model object creates and retrieves a Model Object (which corresponds to an actual row in the database).
+
+ex:
+
+$product1 = Model::Type("Product")->Create(); // will return a model object of type Product
+$product1 = Model::Type("Product")->Create(Field1Value, Field2Value, Field3Value);
+$product2 = Model::Type("Product")->Retrieve("awesome stuff", "insane"); // willl return the model object which has name = "awesome stuff" and othername = "insane", if no such object exists you're going to get a big fat null
+
+$manufacturer1 = Model::Type("Manufacturer")->Create('Dickson Dicks', 'Mighty DD is undescriveable, deal with it.', 'http://dicksondicks.com', 'office@dickson.com');
+
+$product1->set('Name', 'Incomprehensibly cool'); // This will set the name of the object to Incomprehensibly cool (basic type, no drama here)
+$product1->set('otherName', 'awesomeness incarnate');
+$product1->set("Manufacturer", $manufacturer1); // This has to realize that it isn't dealing with a basic type and to validate that the pointer/reference it has received is actually belonging to a ModelObject of type Manufacturer (this is where all the drama is)
+$product1->get("Manufacturer"); // This just retrieves the value of the Manufacturer pointer, no drama here
+
+$product1->set('Categories'); // ok, we're already getting into dramatic territory here
+// Ok as categories is actually a list of type, it will be stored as an array/list so set wouldn't actually have much sense here (it's always going to be initialized with an array I presume. I guess i'm going to need to perform some tests to see how arrays are handled and if I can provide the user with a reference/pointer to the actual list of (actually I can't, I hate stoping myself in mid sentence but in PHP there's no support for arrays of a single type if i'm not mistaken).
+
+We now have this method of work for the models and model objects, but now the issue of when to perform the persistence arises. From what I have thought (which isn't always necessarilly the best way) there would be 3 possible scenarios for this:
+- persist immediately when the command is issued - this would equate to a 1 to 1 mapping of Model commands to Storage commands (i.e. storage commands are issued imediately when the model comand is called).
+- persist on destruct - only issue storage commands once the Model Object is destroyed; this would have the biggest benefit to performance as only a minimum of storage comands are issued.
+- explicit persistence - no storage commands are issued by the system, the user has complete control over when to issue storge commands (sounds good but how the hell does the user issue storage commands himself? :-??).
+
+Cool now to describe how each mode affects each command.
+
+After some much necessary thinking I have come to the conclusion that immediate persistence mode wouldn't be of much use at this point so screw that.
+
+Persist on destruct:
+- unless you call Update or Delete on the Model Object, the model object is persisted when the actual language object is destroyed
+- in this mode to be more precise, Create doesn't immediately insert your stuff in the database
+
+Normal persistence:
+- in this one create creates inserts your data in the database
+
+
+------------------------------------
+Synthesizers
+
+Some more clarification for synthesizers is needed. When I first thought about the Model System, I imagined the synthesizers to be a way to translate data from the Model System's format to the format of the system used to store the data. However this can be further generalized to just processing the data from/to Model System format to another format. Examples of this can include:
+
+- sending some data as an email
+- sending data to paypal or another payment processor
+- sending data to a service such as SalesForce
+- saving your data to a tape backup system (which is still storage but heck, whatev)
+
+If the synthesizer is well written and has a bi-directional data flow (can send and recover data from its source) a translation from a synth's format to another format should be achievable with little effor and you should be able to use unconventional sources for data redundancy (such as your email account should you decide to send certain portions of your data to your email).

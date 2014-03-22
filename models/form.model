@@ -1,0 +1,3 @@
+Model Form:
+	short text Name
+	bool StoreSubmissions
