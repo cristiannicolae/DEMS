@@ -1,0 +1,6 @@
+Model Manufacturer:
+	short text Name
+	text Description
+	short text URL
+	short text ContactEmail
+	short data Picture

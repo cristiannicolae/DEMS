@@ -1,0 +1,5 @@
+Model FieldType:
+	short text	 	Name
+	text 			Code
+	
+	list of FieldProperty Properties

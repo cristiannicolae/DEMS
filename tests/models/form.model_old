@@ -1,0 +1,6 @@
+Model Form:
+	short text Name
+	bool StoreSubmissions
+	
+	list of FieldType fields
+	list of FormSubmission submissions

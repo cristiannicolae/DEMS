@@ -1,0 +1,4 @@
+All tests are written for the PHPUnit Testing Framework.
+To run the tests, please make sure you have PHPUnit installed in your path and run:
+
+phpunit --bootstrap autoload.php tests/TestFile
